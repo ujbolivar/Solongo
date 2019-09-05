@@ -2,7 +2,7 @@ const myCanvasDOMEl = document.getElementById('canvas');
 const ctx = myCanvasDOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
-const size = Math.round(canvas.width / 50);
+const size = Math.round(canvas.width / 70);
 const xEdge = Math.round(canvas.width / size) * (size * 2);
 const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
@@ -10,7 +10,7 @@ let cruiseControl = false;
 //States
 const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
 const food = [];
-let direction = 'right';
+let direction = randomDirection();
 let speed = 200;
 
 function setCanvasDimensions() {
@@ -20,9 +20,16 @@ function setCanvasDimensions() {
     myCanvasDOMEl.setAttribute("height", `${h}px`);
 }
 
-// function direction () {
+function randomDirection () {
+    let directionsArr = ['right', 'left', 'up', 'down'];
+    let rand = Math.random();
+    let randIndex = Math.floor(rand * directionsArr.length);
+    let randomSingleDirection = directionsArr[randIndex];
+    return randomSingleDirection;
+}
+function createSnake() {
 
-// }
+}
 
 function setFood() {
     food.x = Math.round(random(size, w - size) / size) * size;

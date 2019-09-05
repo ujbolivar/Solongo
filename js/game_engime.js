@@ -2,8 +2,7 @@ this.setCanvasDimensions();
 this.setFood();
 
 setInterval(() => {
-    this.clear(),
-    this.draw();
+    this.clear();
     this.move();
-    this.setTimeId(move, speed);
-}, 90);
+    this.draw();
+}, 40);
