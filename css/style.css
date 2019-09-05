@@ -1,9 +1,37 @@
 body {
-    padding: 0;
     margin: 0;
-}
-#canvas {
-    padding: 0;
-    margin: 0;
+    display: flex;
+  }
+  
+  #canvas1 {
+    border: solid 1px red;
+    /* background: #111; */
+    z-index: 1;
+  }
+  
+  #field-container {
+    position: absolute;
+    width: 100%;
+    text-align:center;
+    z-index: 3;
+  }
+  #canvas {
+    position: absolute;
+    /* background: white; */
+    border: solid 5px brown;
+    margin-top: 50px; 
+    z-index: 2;
+    left: 19.9%;
+    /* background: #3e3e3e; */
+  }
+  
+  /*
+  #canvas {
+    margin-left: 170px;
+    margin-top: 55px; 
     background: #3e3e3e;
+    z-index: 3;
+    position: absolute;
+    justify-content: center
 }
+ */

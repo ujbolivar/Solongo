@@ -1,10 +1,15 @@
 function draw() {
     ctx.beginPath();        
-    ctx.font = 'bold 20p Open Sans';
+    ctx.font = 'bold 20p Comic Sans MS';
     ctx.textAlign = 'center';
     ctx.fillStyle = 'white';
-    ctx.fillText('Score: ' + score, 40, 40, 200)
+    ctx.fillText('Score: ' + score, 40, 40)
     ctx.closePath()  
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'white';
+    ctx.fillText('Score: ' + score, 40, 40)
+    ctx.closePath()  
+    
     for (let i = 0; i < snake.length; i += 1) { 
         // draws score 
         // draws food
@@ -15,10 +20,10 @@ function draw() {
         // draws snake
         const s = snake[i];
         ctx.beginPath();
-        if (i === 0){ctx.fillStyle = 'white';
+        if (i === 0){ctx.fillStyle = 'black';
         ctx.fillRect(s.x, s.y, size, size);} else {ctx.fillStyle = 'blue';
         ctx.fillRect(s.x, s.y, size, size);}
         ctx.closePath()
-      
+        
     }
 }

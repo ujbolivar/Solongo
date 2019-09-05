@@ -1,19 +1,29 @@
-const myCanvasDOMEl = document.getElementById('canvas');
-const ctx = myCanvasDOMEl.getContext("2d");
+const canvas2DOMEl = document.getElementById('canvas');
+const ctx = canvas2DOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
-const size = Math.round(canvas.width / 70);
+const size = Math.round(canvas.width / 80);
 const xEdge = Math.round(canvas.width / size) * (size * 2);
 const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
 let score = 0;
 let fps = 60;
+var snakeHead = new Image();
 
 //States
-const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
+// const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
+const snake = [{x: 330, y: 330}];
 const food = [];
 let direction = randomDirection();
 let speed = 50;
+
+// create the snake
+function createSnake(snake) {
+    if (snake.x >= w ) {
+        snake.x = 30,
+        snake.y = 50
+    }
+}
 
 // the score text
 function text(txt, fnt, x, y, c) {
@@ -22,12 +32,12 @@ function text(txt, fnt, x, y, c) {
     ctx.fillText(txt, x, y)
 }
 
-//sets the grid size
+//sets the field
 function setCanvasDimensions() {
     // x axis
-    myCanvasDOMEl.setAttribute("width", `${w}px`);
+    canvas2DOMEl.setAttribute("width", `${w}px`);
     // y axis
-    myCanvasDOMEl.setAttribute("height", `${h}px`);
+    canvas2DOMEl.setAttribute("height", `${h}px`);
 }
 
 //snake starts in random direction
