@@ -3,10 +3,14 @@ const ctx = myCanvasDOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
 const size = Math.round(canvas.width / 50);
+const xEdge = Math.round(canvas.width / size) * size;
+const yEdge = Math.round(canvas.height / size) * size;
+
+//States
 const snake = [{x: 0, y: 0}];
+const food = [];
 let direction = 'right';
 let speed = 200;
-const food = [];
 
 function setCanvasDimensions() {
     // x axis
@@ -28,7 +32,7 @@ function move() {
     for (let i=snake.length-1; i>=0; i--) { 
         if (i === 0 && snake[i].x === food.x && snake[i].y === food.y) {
                 snake.push({});
-                speed += 0.99;
+                speed *= 0.99;
                 setFood();
             }        
             const s = snake[i];
@@ -47,6 +51,18 @@ function move() {
                     snake[i].y -= size;
                     break;
                 }
+
+                for(let j = 1; j < snake.length; j += 1) {
+                    if (snake[0].x === snake[j].x && snake[0].y === snake[j].y) {
+                        alert('GAME OVER');
+                        window.location.reload();
+                    }
+
+
+                }
+
+
+
             } else {
                 snake[i].x = snake[i-1].x;
                 snake[i].y = snake[i-1].y;
