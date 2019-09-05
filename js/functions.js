@@ -8,7 +8,7 @@ const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
 
 //States
-const snake = [{x: 0, y: 0}];
+const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
 const food = [];
 let direction = 'right';
 let speed = 200;
@@ -19,6 +19,10 @@ function setCanvasDimensions() {
     // y axis
     myCanvasDOMEl.setAttribute("height", `${h}px`);
 }
+
+// function direction () {
+
+// }
 
 function setFood() {
     food.x = Math.round(random(size, w - size) / size) * size;
@@ -40,26 +44,25 @@ function move() {
             if (i == 0) {
                 switch(direction) {
                     case 'right':
-                    if (s.x > canvas.width) s.x = 0;
+                    if (s.x > canvas.width) gameOver();
                     s.x += size;
                     break;
                     case 'down':
-                    if (s.y > canvas.height) s.y = 0;
+                    if (s.y > canvas.height) gameOver();
                     s.y += size;
                     break;
                     case 'left':
-                    if (s.x < 0) s.x = xEdge;
+                    if (s.x < 0) gameOver();
                     s.x -= size;
                     break;
                     case 'up':
-                    if (s.y < 0) s.y = yEdge;
+                    if (s.y < 0) gameOver();
                     s.y -= size;
                     break;
                 }
                 for(let j = 1; j < snake.length; j += 1) {
                     if (snake[0].x === snake[j].x && snake[0].y === snake[j].y) {
-                        alert('GAME OVER');
-                        window.location.reload();
+                        gameOver();
                     }
 
 
@@ -70,6 +73,11 @@ function move() {
             }
         } cruiseControl = false;
     }    
+    
+    function gameOver() {
+        alert('GAME OVER');
+        window.location.reload();
+    }
     
     function setTimeId(param1,param2) {
         window.setTimeout(move, speed); 
@@ -89,68 +97,5 @@ function move() {
             if (direction === 'down' && newDirection !== 'up') direction = newDirection; 
             if (direction === 'right' && newDirection !== 'left') direction = newDirection;
         }
-    }
-    
+    } 
     window.addEventListener('keydown', onKeyDown);
-    
-    
-    
-    /*var Game = {
-        canvas: undefined,
-        // myCanvasDOMEl: document.getElementById('canvas'),
-        // ctx: myCanvasDOMEl.getContext("2d"),
-        w: window.innerWidth,
-        h: window.innerHeight,
-        size: Math.round(canvas.width / 50),
-        snake: [{x: 0, y: 0}],
-        food: {},
-        direction: 'right',
-        speed: 200,
-        
-        init: function(canvasID) {
-            this.canvas = document.getElementById(canvasId);
-            this.ctx = this.canvas.getContext("2d");
-            function setCanvasDimensions() {
-                // x axis
-                myCanvasDOMEl.setAttribute("width", `${w}px`);
-                // y axis
-                myCanvasDOMEl.setAttribute("height", `${h}px`);
-            }
-            
-            
-            
-            function random (min, max) {
-                return Math.random() * (max - min) + min;
-            }
-            
-            function draw() {
-                for (let i = 0; i < snake.length; i += 1) {
-                    const s = snake[i];
-                    ctx.fillStyle = 'red';
-                    ctx.fillRect(s.x, s.y, size, size);
-                }
-            }
-            
-            function tick() {
-                for (let i=snake.length-1; i>=0; i--) {
-                    const s = snake[i];
-                    if (i == 0) {
-                        snake[i].x += size;
-                        snake[i].y += size;
-                    } else {
-                        snake[i].x += snake[i-1].x;
-                        snake[i].y += snake[i-1].y ;
-                    } 
-                } 
-            }    
-            
-            function setTimeId(param1,param2) {
-                window.setTimeout(tick, speed); 
-            };
-            
-            function clear() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-    }
-}*/
