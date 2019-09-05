@@ -3,8 +3,9 @@ const ctx = myCanvasDOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
 const size = Math.round(canvas.width / 50);
-const xEdge = Math.round(canvas.width / size) * size;
-const yEdge = Math.round(canvas.height / size) * size;
+const xEdge = Math.round(canvas.width / size) * (size * 2);
+const yEdge = Math.round(canvas.height / size) * (size * 2);
+let cruiseControl = false;
 
 //States
 const snake = [{x: 0, y: 0}];
@@ -39,19 +40,22 @@ function move() {
             if (i == 0) {
                 switch(direction) {
                     case 'right':
-                    snake[i].x += size;
+                    if (s.x > canvas.width) s.x = 0;
+                    s.x += size;
                     break;
                     case 'down':
-                    snake[i].y += size;
+                    if (s.y > canvas.height) s.y = 0;
+                    s.y += size;
                     break;
                     case 'left':
-                    snake[i].x -= size;
+                    if (s.x < 0) s.x = xEdge;
+                    s.x -= size;
                     break;
                     case 'up':
-                    snake[i].y -= size;
+                    if (s.y < 0) s.y = yEdge;
+                    s.y -= size;
                     break;
                 }
-
                 for(let j = 1; j < snake.length; j += 1) {
                     if (snake[0].x === snake[j].x && snake[0].y === snake[j].y) {
                         alert('GAME OVER');
@@ -60,14 +64,11 @@ function move() {
 
 
                 }
-
-
-
             } else {
                 snake[i].x = snake[i-1].x;
                 snake[i].y = snake[i-1].y;
             }
-        } 
+        } cruiseControl = false;
     }    
     
     function setTimeId(param1,param2) {
@@ -79,8 +80,15 @@ function move() {
     }
     
     function onKeyDown(e) {
-        const newDirection = e.key.substr(5).toLowerCase();
-        direction = newDirection;
+        if (!cruiseControl) {
+            cruiseControl = true;
+            const newDirection = e.key.substr(5).toLowerCase();
+            
+            if (direction === 'left' && newDirection !== 'right') direction = newDirection;
+            if (direction === 'up' && newDirection !== 'down') direction = newDirection;
+            if (direction === 'down' && newDirection !== 'up') direction = newDirection; 
+            if (direction === 'right' && newDirection !== 'left') direction = newDirection;
+        }
     }
     
     window.addEventListener('keydown', onKeyDown);
