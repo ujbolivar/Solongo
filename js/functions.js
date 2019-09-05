@@ -6,13 +6,23 @@ const size = Math.round(canvas.width / 70);
 const xEdge = Math.round(canvas.width / size) * (size * 2);
 const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
+let score = 0;
+let fps = 60;
 
 //States
 const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
 const food = [];
 let direction = randomDirection();
-let speed = 200;
+let speed = 50;
 
+// the score text
+function text(txt, fnt, x, y, c) {
+    ctx.fillStyle = c;
+    ctx.font = fnt;
+    ctx.fillText(txt, x, y)
+}
+
+//sets the grid size
 function setCanvasDimensions() {
     // x axis
     myCanvasDOMEl.setAttribute("width", `${w}px`);
@@ -20,6 +30,7 @@ function setCanvasDimensions() {
     myCanvasDOMEl.setAttribute("height", `${h}px`);
 }
 
+//snake starts in random direction
 function randomDirection () {
     let directionsArr = ['right', 'left', 'up', 'down'];
     let rand = Math.random();
@@ -27,43 +38,42 @@ function randomDirection () {
     let randomSingleDirection = directionsArr[randIndex];
     return randomSingleDirection;
 }
-function createSnake() {
 
-}
-
+//Drop the food on the grid
 function setFood() {
     food.x = Math.round(random(size, w - size) / size) * size;
     food.y = Math.round(random(size, h - size) / size) * size;
 }
-
+//randomizing function
 function random (min, max) {
     return Math.random() * (max - min) + min;
 }
-
+//make the snake walk
 function move() {
     for (let i=snake.length-1; i>=0; i--) { 
         if (i === 0 && snake[i].x === food.x && snake[i].y === food.y) {
                 snake.push({});
                 speed *= 0.99;
                 setFood();
+                score++;
             }        
             const s = snake[i];
             if (i == 0) {
                 switch(direction) {
                     case 'right':
-                    if (s.x > canvas.width) gameOver();
+                    if (s.x > canvas.width - (size * 2)) gameOver();
                     s.x += size;
                     break;
                     case 'down':
-                    if (s.y > canvas.height) gameOver();
+                    if (s.y > canvas.height - (size * 2)) gameOver();
                     s.y += size;
                     break;
                     case 'left':
-                    if (s.x < 0) gameOver();
+                    if (s.x < 0  + size) gameOver();
                     s.x -= size;
                     break;
                     case 'up':
-                    if (s.y < 0) gameOver();
+                    if (s.y < 0 + size) gameOver();
                     s.y -= size;
                     break;
                 }
@@ -80,7 +90,7 @@ function move() {
             }
         } cruiseControl = false;
     }    
-    
+    //ends game
     function gameOver() {
         alert('GAME OVER');
         window.location.reload();
@@ -93,7 +103,7 @@ function move() {
     function clear() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
-    
+    //directions
     function onKeyDown(e) {
         if (!cruiseControl) {
             cruiseControl = true;

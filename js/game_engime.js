@@ -1,8 +1,9 @@
 this.setCanvasDimensions();
 this.setFood();
 
-setInterval(() => {
+let intervalId = setInterval(() => {
     this.clear();
     this.move();
     this.draw();
-}, 40);
+    //this.setTimeout(move, speed)
+}, 1000/(fps / 3));
