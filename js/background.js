@@ -16,24 +16,12 @@ function domloaded(){
         
         const canvas1DOMEL = document.querySelector                  ("#canvas1");
         const ctx = canvas1DOMEL.getContext("2d");
-        
-        
-            let jungle = new Image();
-            jungle.src = "./../images/jungle background and grass.jpg";
-            jungle.onload = function() {
-                ctx.drawImage(jungle, 0, 0);
-            }
-        
-        // const canvas2DOMEl = document.querySelector             ("#canvas");
-        // const ctx2 = canvas2DOMEl.getContext("2d");
-        
-        // let grass = new Image();
-        // grass.src = "./../images/grass red.jpg";
-        // grass.onload = function() {
-        //     ctx2.drawImage(grass, 0, 0);
-        // }
-        
-        // ctx2.fillStyle = "rgb(200,0,0)";
+
+        let jungle = new Image();
+        jungle.src = "./../images/jungle background and grass.jpg";
+        jungle.onload = function() {
+            ctx.drawImage(jungle, 0, 0);
+        }
         
         // This sets some variables for demonstration purposes
         var x = 50;

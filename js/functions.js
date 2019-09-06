@@ -2,7 +2,7 @@ const canvas2DOMEl = document.getElementById('canvas');
 const ctx = canvas2DOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
-const size = Math.round(canvas.width / 50);
+const size = Math.round(canvas.width / 80);
 const xEdge = Math.round(canvas.width / size) * (size * 2);
 const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
@@ -10,12 +10,12 @@ let score = 0;
 let fps = 60;
 
 //States
-const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
+let snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
+//let snake = [];
 const food = [];
 let direction = randomDirection();
 let speed = 50;
 
-// the score text
 function text(txt, fnt, x, y, c) {
     ctx.fillStyle = c;
     ctx.font = fnt;
@@ -76,6 +76,7 @@ function move() {
                     if (s.y < 0 + size) gameOver();
                     s.y -= size;
                     break;
+                    default: return;
                 }
                 for(let j = 1; j < snake.length; j += 1) {
                     if (snake[0].x === snake[j].x && snake[0].y === snake[j].y) {
