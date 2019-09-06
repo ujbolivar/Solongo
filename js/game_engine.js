@@ -4,5 +4,5 @@ let intervalId = setInterval(() => {
     this.clear();
     this.move();
     this.draw();
-    this.setTimeout(move, speed)
-}, 500);
+//    this.setTimeout(move, speed)
+}, 100);
