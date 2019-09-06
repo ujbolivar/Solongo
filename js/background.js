@@ -12,7 +12,7 @@ function domloaded(){
         document.querySelector("#canvas1").setAttribute           ("height", `${h}px`);
         
         document.querySelector("#canvas").setAttribute           ("width", `${w * .58}px`);
-        document.querySelector("#canvas").setAttribute          ("height", `${h * .8}px`);
+        document.querySelector("#canvas").setAttribute          ("height", `${h * .81}px`);
         
         const canvas1DOMEL = document.querySelector                  ("#canvas1");
         const ctx = canvas1DOMEL.getContext("2d");
