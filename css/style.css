@@ -3,24 +3,33 @@ body {
     display: flex;
   }
   
-  #canvas1 {
+   #canvas1 {
     /*border: solid 1px red;*/
     /* background: #111; */
-    /*z-index: 1;*/
+    z-index: 1;
   }
-  
+   
   #field-container {
     position: absolute;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     text-align:center;
-    /* z-index: 3; */
+    z-index: 3;
+  }
+
+  #field-container img {
+    width: 300px;
   }
   #canvas {
-    position: absolute;
+    
     /* background: white; */
     border: solid 5px rgba(223, 226, 48, 0.521);
-    margin-top: 90px; 
-    /* z-index: 2; */
+    z-index: 2;
     left: 19.9%;
     /* background: #3e3e3e; */
   }
