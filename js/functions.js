@@ -111,7 +111,7 @@ function move() {
 }
 //ends game
 function gameOver() {
-  console.log("GAME OVER");
+  alert("GAME OVER");
   window.location.reload();
 }
 function clear() {
