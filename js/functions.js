@@ -2,7 +2,7 @@ const canvas2DOMEl = document.getElementById('canvas');
 const ctx = canvas2DOMEl.getContext("2d");
 const w = window.innerWidth;
 const h = window.innerHeight;
-const size = Math.round(canvas.width / 80);
+const size = Math.round(canvas.width / 40);
 const xEdge = Math.round(canvas.width / size) * (size * 2);
 const yEdge = Math.round(canvas.height / size) * (size * 2);
 let cruiseControl = false;
@@ -11,19 +11,19 @@ let fps = 60;
 var snakeHead = new Image();
 
 //States
-// const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
-const snake = [{x: 330, y: 330}];
+const snake = [{x: Math.round(random(size, w - size) / size) * size, y: Math.round(random(size, h - size) / size) * size}];
+// const snake = [{x: 330, y: 330}];
 const food = [];
 let direction = randomDirection();
 let speed = 50;
 
 // create the snake
-function createSnake(snake) {
-    if (snake.x >= w ) {
-        snake.x = 30,
-        snake.y = 50
-    }
-}
+// function createSnake(snake) {
+//     if (snake.x >= w ) {
+//         snake.x = w / 2,
+//         snake.y = h / 2
+//     }
+// }
 
 // the score text
 function text(txt, fnt, x, y, c) {
