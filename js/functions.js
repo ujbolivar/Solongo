@@ -111,8 +111,8 @@ function move() {
 }
 //ends game
 function gameOver() {
-  alert("GAME OVER");
   window.location.reload();
+  alert("GAME OVER");
 }
 function clear() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
